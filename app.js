@@ -107,7 +107,7 @@ let startGame = function()
         }, 1000);
     }
     let uploadQuote = function(quote){  
-        //timer();    //start timing
+        timer();    //start timing
 
         quoteObject['anime'] = quote.anime;
         quoteObject['character'] = quote.character;

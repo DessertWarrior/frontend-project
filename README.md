@@ -27,5 +27,11 @@ Hard: 10 seconds per question
 - HTML
 - CSS
 - JavaScript
-- Credits
-- This game was created by Genglin Yu as a project for frontEnd Project.
+- API
+
+**References**
+- API from Animechan(https://animechan.vercel.app/)
+
+
+This game was created by Genglin Yu as a project for frontEnd Project.
+

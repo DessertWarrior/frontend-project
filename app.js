@@ -12,12 +12,6 @@ let numberOfQuestions = NUM_QUESTIONS;
 let newInterval;
 let correctGuesses=0;
 
-// fetch('https://animechan.vercel.app/api/random')
-//     .then(response => response.json())
-// //     .then(quote => getRandomQuote(quote))
-// fetch("https://animechan.vercel.app/api/random/anime?title=naruto")
-//         .then((response) => response.json())
-//         .then((quote) => console.log(quote));
 function displayMain()
 {
     let main_container = document.querySelector('.main-container');
@@ -93,17 +87,27 @@ let startGame = function()
 
         newInterval = setInterval(() => {
             time--;
-            timerNode.innerText = calculateTime(time);
+            //timerNode.innerText = calculateTime(time);
             if (time < 0)
             {
                 let ans;
+                let selection = document.querySelectorAll('.trueAns');
                 if (choice == 0)
                 {
-                    ans = quoteObject.character;
+                    selection.forEach(element=>{
+                        let labelNode = element.parentElement.lastChild;
+                        if (labelNode.innerText == quoteObject.character)
+                        {
+                            labelNode.style.color = 'rgba(84, 171, 81, 0.929)';
+                            ans = labelNode.innerText;
+                        }
+                    });
                 }
                 console.log(`Time Up! The correct answer is ${ans}`);
                 continueGame();
             }
+            else 
+            timerNode.innerText = calculateTime(time);
         }, 1000);
     }
     let uploadQuote = function(quote){  
@@ -215,7 +219,7 @@ function continueGame()
         else
         {
             document.querySelector('.main-container').innerHTML = '';
-            alert(`You got total of ${correctGuesses} guesses out of ${NUM_QUESTIONS} correct! Your score is ${Math.floor(correctGuesses/ NUM_QUESTIONS * 100)}`);
+            alert(`You got total of ${correctGuesses} guesses out of ${NUM_QUESTIONS} correct! Your score is ${Math.floor(correctGuesses/ NUM_QUESTIONS * 100)}%`);
             displayMain();
             init(); //initialize click event
         }
